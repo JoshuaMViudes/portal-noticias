@@ -26,7 +26,15 @@ class CategoriaSeeder extends Seeder
             ],
             [
                 "nome" => "Hardware",
-                "cor" => "#108981"
+                "cor" => "#10B981"
+            ],
+            [
+                "nome" => "Cloud Computing",
+                "cor" => "#F59E0B"
+            ],
+            [
+                "nome" => "Cyper Segurança",
+                "cor" => "#EF4444"
             ],
         ]);
     }

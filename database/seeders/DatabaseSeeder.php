@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use phpDocumentor\Reflection\Types\This;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,12 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            UsuarioSeeder::class,
+            CategoriaSeeder::class,
+            NoticiaSeeder::class,
 
-        User::factory()->create([
-            'nome' => 'Joshua Viudes',
-            'email' => 'joshviudes@gmail.com',
-            'perfil' => 'administrador',
         ]);
     }
 }
