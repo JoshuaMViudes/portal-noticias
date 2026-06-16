@@ -112,36 +112,7 @@
 
         </main>
 
-        <footer class="bg-slate-900 text-slate-400 text-sm">
-            <div class="max-w-7xl mx-auto px-8 py-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div>
-                        <h4 class="font-medium mb-1 text-white">BlogNews</h4>
-                        <p>Plataforma criada em aula para aprender PHP, MySQL e PDO ná prática</p>
-                    </div>
-                    <div>
-                        <h4 class="font-medium mb-1 text-white">Navegar</h4>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Gerenciar</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-medium mb-1 text-white">Tags</h4>
-                        <div class="flex gap-2 flex-wrap">
-                            <span class="bg-slate-800 px-2 py-0.5 rounded">PHP 8</span>
-                            <span class="bg-slate-800 px-2 py-0.5 rounded">MySql</span>
-                            <span class="bg-slate-800 px-2 py-0.5 rounded">PDO</span>
-                            <span class="bg-slate-800 px-2 py-0.5 rounded">Tailwindcss</span>
-                            <span class="bg-slate-800 px-2 py-0.5 rounded">MVC</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center border-t pt-3 border-slate-700">
-                    &copy; 2026 BlogNews - Todos os direitos são reservados
-                </div>
-            </div>
-        </footer>
+        
 
 
     </body>
