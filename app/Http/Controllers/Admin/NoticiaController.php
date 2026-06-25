@@ -26,11 +26,11 @@ class NoticiaController extends Controller
     }
 
     /**
-     * Chamar o view do cadasrtar notícias.
+     * Chamar o view do cadastrar notícias.
      */
     public function create()
     {
-        //
+        return view("admin.noticias.cadastrar");
     }
 
     /**
