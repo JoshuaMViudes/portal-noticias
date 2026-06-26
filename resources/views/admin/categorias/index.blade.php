@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between items-center">
                     <h1 class="text-[18px]">Lista de Categorias</h1>
                     <a href="{{ route('admin.categorias.cadastrar') }}"
-                        class="bg-slate-950 text-white px-4 py-2 rounded ">+ Adicionar Categorias.</a>
+                        class="bg-slate-950 text-white px-4 py-2 rounded ">+ Adicionar categoria</a>
                 </div>
 
                 <div class="p-6 overflow-x-auto">
@@ -33,9 +33,18 @@
                                     <td>{{ $c->nome }}</td>
                                     <td>{{ $c->descricao }}</td>
                                     <td>{{ $c->cor }}</td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn-editar">Editar</a>
-                                        <a href="#" class="btn-excluir">Excluir</a>
+                                    <td class="text-center flex gap-1 justify-center">
+                                        <a href="{{ route('admin.categorias.editar', $c->id) }}"
+                                            class="btn-editar">Editar</a>
+
+                                        <form action="{{ route('admin.categorias.excluir', $c->id) }}" method="post">
+
+                                            @method('delete')
+                                            @csrf
+
+                                            <button type="submit" class="btn-excluir"
+                                                onclick="return confirm('Deseja Excluir Permanentemente o Registro?')">Excluir</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty

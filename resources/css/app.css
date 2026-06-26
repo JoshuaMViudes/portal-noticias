@@ -20,7 +20,7 @@
 }
 
 .btn-excluir {
-    @apply bg-red-500 px-2 py-1 rounded;
+    @apply bg-red-300 px-2 py-1 rounded;
 }
 
 .form-label {

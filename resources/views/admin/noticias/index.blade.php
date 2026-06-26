@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between items-center">
                     <h1 class="text-[18px]">Lista de Noticias</h1>
                     <a href="{{ route('admin.noticias.cadastrar') }}" class="bg-slate-950 text-white px-4 py-2 rounded ">+
-                        Adicionar Noticia.</a>
+                        Adicionar Notícia</a>
                 </div>
 
                 <div class="p-6 overflow-x-auto">
@@ -22,8 +22,8 @@
                                 <th>TITULO</th>
                                 <th class="hidden sm:table-cell">RESUMO</th>
                                 <th class="hidden sm:table-cell"> CATEGORIA</th>
-                                <th>PUBLICAÇÃO</th>
-                                <th class="text-center">AÇÃO</th>
+                                <th class="w-[130px]">PUBLICAÇÃO</th>
+                                <th class="text-center w-[130px]">AÇÃO</th>
 
                             </tr>
                         </thead>
@@ -40,9 +40,18 @@
                                         {{ $n->created_at->diffForHumans() }}
 
                                     </td>
-                                    <td class="text-center">
-                                        <a href="#" class="btn-editar">Editar</a>
-                                        <a href="#" class="btn-excluir">Excluir</a>
+                                    <td class="text-center ">
+                                        <a href="{{ route('admin.noticias.editar', $n->id) }}"
+                                            class="btn-editar">Editar</a>
+
+                                        <form action="{{ route('admin.noticias.excluir', $n->id) }}" method="post">
+
+                                            @method('delete')
+                                            @csrf
+
+                                            <button type="submit" class="btn-excluir"
+                                                onclick="return confirm('Deseja Excluir Permanentemente o Registro?')">Excluir</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty
