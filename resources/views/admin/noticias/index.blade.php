@@ -33,7 +33,7 @@
                                     <td>{{ $n->id }}</td>
                                     <td>{{ $n->titulo }}</td>
                                     <td class="hidden sm:table-cell">{{ $n->resumo }}</td>
-                                    <td class="hidden sm:table-cell">{{ $n->categoria }}</td>
+                                    <td class="hidden sm:table-cell">{{ $n->categoria_id }}</td>
                                     <td>
                                         {{ $n->created_at->format('d/m/Y H:i') }}
                                         <br>0
