@@ -11,14 +11,15 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between items-center">
                     <h1 class="text-[18px]">Cadastrar Noticias</h1>
                     <a href="{{ route('admin.noticias.index') }}"
-                        class=" text-slate-500 font-semibold px-4 py-2 rounded "><- Voltar para notícias</a>
+                        class=" text-slate-500 font-semibold px-4 py-2 rounded "><- Voltar para notícias.</a>
                 </div>
                 <div class="p-6 overflow-x-auto">
+
+
 
                     <form action="{{ route('admin.noticias.armazenar') }}" method="post" enctype="multipart/form-data">
 
                         @csrf
-                        
                         @include('admin.noticias._form')
 
                     </form>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens; // <-- 1. Adiciona esta importação
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,11 +12,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    /** @use HasFactory<UserFactory> */
+    use HasApiTokens, HasFactory, Notifiable; // <-- 2. Adiciona HasApiTokens aqui
 
     protected $table = "usuarios";
-
-    /** @use HasFactory<UserFactory> */
-    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.

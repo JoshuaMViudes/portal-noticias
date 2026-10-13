@@ -7,9 +7,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", [HomeController::class, "home"])->name('home');
-Route::get("/noticia", [HomeController::class, "visualizarNoticias"])->name('visualizar');
+Route::get("/noticia", [HomeController::class, "visualizarNoticias"])->name('visualizarNoticias');
 Route::get("/contato", [HomeController::class, "contato"])->name('contato');
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -20,7 +19,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
     //Rotas do Gerenciamento de Notícias
     Route::get('/dashboard/noticias', [NoticiaController::class, "index"])->name('admin.noticias.index');
 
@@ -30,22 +28,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard/noticias/editar/{id}', [NoticiaController::class, "edit"])->name('admin.noticias.editar');
 
+    Route::put('/dashboard/noticias/atualizar/{id}', [NoticiaController::class, "update"])->name('admin.noticias.atualizar');
+
     Route::delete('/dashboard/noticias/excluir/{id}', [NoticiaController::class, "destroy"])->name('admin.noticias.excluir');
-
-
-
 
     //Rotas do Gerenciamento de Categorias
     Route::get('/dashboard/categorias', [CategoriaController::class, "index"])->name('admin.categorias.index');
-
-    Route::get('/dashboard/categorias/cadastrar', [
-        CategoriaController::class,
-        "create"
-    ])->name('admin.categorias.cadastrar');
-
-    Route::get('/dashboard/categorias/editar/{id}', [CategoriaController::class, "edit"])->name('admin.categorias.editar');
-
-    Route::delete('/dashboard/categorias/excluir/{id}', [CategoriaController::class, "destroy"])->name('admin.categorias.excluir');
 });
 
 require __DIR__ . '/auth.php';

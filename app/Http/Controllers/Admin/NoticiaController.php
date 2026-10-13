@@ -12,18 +12,24 @@ use Illuminate\Support\Facades\Storage;
 class NoticiaController extends Controller
 {
     /**
-     * Lista de noticia do banco
+     * Listar as Notícias de um banco.
      */
     public function index()
     {
         $noticias = Noticia::all();
-        return view('admin.noticias.index', [
-            'noticias' => $noticias
+
+        return view("admin.noticias.index", [
+            'noticias' => $noticias,
         ]);
+
+        /*
+        Outra forma de fazer o mesmo de cima
+        return view("admin.noticias.index", compact('noticias');
+        */
     }
 
     /**
-     * Chamar a view do cadastrar noticia
+     * Chamar o view do cadastrar notícias.
      */
     public function create()
     {
@@ -35,16 +41,14 @@ class NoticiaController extends Controller
     }
 
     /**
-     * Armazenar dados.
+     * Armazenar os Dados da Notícia, enviado pelo formulário.
      */
     public function store(Request $request)
     {
-        dd($request);
-
-        $request->validade([
+        $request->validate([
             'categoria_id' => 'required',
             'titulo' => 'required|min:10|max:255',
-            'resumo' => 'require',
+            'resumo' => 'required',
             'conteudo' => 'required',
             'imagem' => 'required|image|mimes:jpge,jpg,png,webp|max:2048'
         ]);
@@ -53,9 +57,9 @@ class NoticiaController extends Controller
 
         $noticia->titulo = $request->titulo;
         $noticia->resumo = $request->resumo;
-        $noticia->conteudo = $request->titulo;
-        $noticia->categoria_id = $request->titulo;
-        $noticia->ativo = $request->titulo;
+        $noticia->conteudo = $request->conteudo;
+        $noticia->categoria_id = $request->categoria_id;
+        $noticia->ativo = $request->ativo;
         $noticia->usuario_id = Auth::user()->id;
 
         if ($request->hasFile('imagem')) {
@@ -68,17 +72,13 @@ class NoticiaController extends Controller
     }
 
     /**
-     * Visualizar uma noticia
-     */
-
-    /**
-     * Chamar a view do editar noticias
+     * Chamar o view do editor de notícias.
      */
     public function edit(string $id)
     {
         $categorias = Categoria::orderBy('nome', 'ASC')->pluck('nome', 'id');
 
-        $noticia = Noticia::findOrFail($id);
+        $noticia = Noticia::findOrfail($id);
 
         return view("admin.noticias.editar", [
             'categorias' => $categorias,
@@ -87,25 +87,25 @@ class NoticiaController extends Controller
     }
 
     /**
-     * Armazenar a atualizacao dos dados da noticia
+     * Armazenar a atualização dos dados da notícia.
      */
     public function update(Request $request, string $id)
     {
-        $request->validade([
+        $request->validate([
             'categoria_id' => 'required',
             'titulo' => 'required|min:10|max:255',
-            'resumo' => 'require',
+            'resumo' => 'required',
             'conteudo' => 'required',
             'imagem' => 'nullable|image|mimes:jpge,jpg,png,webp|max:2048'
         ]);
 
-        $noticia = Noticia::findOrFall($id);
+        $noticia = Noticia::findOrfail($id);
 
         $noticia->titulo = $request->titulo;
         $noticia->resumo = $request->resumo;
-        $noticia->conteudo = $request->titulo;
-        $noticia->categoria_id = $request->titulo;
-        $noticia->ativo = $request->titulo;
+        $noticia->conteudo = $request->conteudo;
+        $noticia->categoria_id = $request->categoria_id;
+        $noticia->ativo = $request->ativo;
         $noticia->usuario_id = Auth::user()->id;
 
         if ($request->hasFile('imagem')) {
@@ -122,11 +122,11 @@ class NoticiaController extends Controller
     }
 
     /**
-     * excluir uma noticia de banco de dados.
+     * Excluir uma notícia do banco de dados.
      */
     public function destroy(string $id)
     {
-        $noticia = Noticia::findOrFail($id);
+        $noticia = Noticia::findOrfail($id);
         $noticia->delete();
         return redirect()->route('admin.noticias.index');
     }

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .table {
     @apply w-full text-sm;
 }
@@ -17,10 +18,11 @@
 
 .btn-editar {
     @apply bg-slate-300 px-2 py-1 rounded;
+
 }
 
 .btn-excluir {
-    @apply bg-red-300 px-2 py-1 rounded;
+    @apply bg-red-500 px-2 py-1 rounded;
 }
 
 .form-label {

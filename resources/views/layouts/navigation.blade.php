@@ -19,7 +19,7 @@
                         Notícias
                     </x-nav-link>
                     <x-nav-link :href="route('admin.categorias.index')" :active="request()->routeIs('admin.categorias.index')">
-                        Categorias
+                        Categoria
                     </x-nav-link>
                 </div>
             </div>

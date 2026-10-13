@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
-use Database\Seeders\CategoriaSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriaController extends Controller
 {
@@ -16,8 +16,8 @@ class CategoriaController extends Controller
     {
         $categorias = Categoria::all();
 
-        return view("admin.categorias.index", [
-            'categorias' => $categorias,
+        return view('admin.categorias.index', [
+            'categorias' => $categorias
         ]);
     }
 
@@ -26,7 +26,8 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view("admin.categorias.cadastrar");
+        
+        return view('admin.categorias.cadastrar');
     }
 
     /**
@@ -34,7 +35,23 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'categoria_id' => 'required',
+            'titulo' => 'required|min:10|max:255',
+            'conteudo' => 'required',
+            'cor' => 'required'
+        ]);
+
+        $categoria = new Categoria();
+
+        $categoria->titulo = $request->titulo;
+        $categoria->conteudo = $request->conteudo;
+        $categoria->ativo = $request->ativo;
+        $categoria->usuario_id = Auth::user()->id;
+
+        $categoria->save();
+
+        return redirect()->route('admin.categorias.index');
     }
 
     /**
@@ -42,16 +59,13 @@ class CategoriaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('admin.categorias.editar');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        return view("admin.categorias.editar");
-    }
+    public function edit(string $id) {}
 
     /**
      * Update the specified resource in storage.
@@ -66,6 +80,6 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        return "Funcionou... Deletou o registro!";
+        return "funcionou.. Deletou o registro";
     }
 }

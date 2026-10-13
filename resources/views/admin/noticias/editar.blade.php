@@ -9,15 +9,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between items-center">
-                    <h1 class="text-[18px]">Editar Noticias</h1>
+                    <h1 class="text-[18px]"> Noticias</h1>
                     <a href="{{ route('admin.noticias.index') }}"
-                        class=" text-slate-500 font-semibold px-4 py-2 rounded "><- Voltar para notícias</a>
+                        class=" text-slate-500 font-semibold px-4 py-2 rounded "><- Voltar para notícias.</a>
                 </div>
                 <div class="p-6 overflow-x-auto">
 
-                    <form action="#" method="post">
+                    <form action="{{ route('admin.categorias.atualizar', $noticia->id) }}" method="post"
+                        enctype="multipart/form-data">
+                        @method('put')
+                        @csrf
 
-                        @include("admin.noticias._form")
+                        @include('admin.noticias._form')
 
                     </form>
 

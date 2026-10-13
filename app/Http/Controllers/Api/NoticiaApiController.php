@@ -20,7 +20,6 @@ class NoticiaApiController extends Controller
         return response()->json($noticias);
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
@@ -31,7 +30,7 @@ class NoticiaApiController extends Controller
             'titulo' => 'required|min:10|max:255',
             'resumo' => 'required',
             'conteudo' => 'required',
-            'imagem' => 'required|image|mimes:jpge,jpg,png,webp|max:2048'
+            'imagem' => 'nullable|image|mimes:jpge,jpg,png,webp|max:2048'
         ]);
 
         $noticia = new Noticia();
@@ -70,7 +69,7 @@ class NoticiaApiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validade([
+        $request->validate([
             'categoria_id' => 'required',
             'titulo' => 'required|min:10|max:255',
             'resumo' => 'required',
@@ -78,16 +77,17 @@ class NoticiaApiController extends Controller
             'imagem' => 'nullable|image|mimes:jpge,jpg,png,webp|max:2048'
         ]);
 
-        $noticia = Noticia::findOrFall($id);
+        $noticia = Noticia::findOrFail($id);
 
         $noticia->titulo = $request->titulo;
         $noticia->resumo = $request->resumo;
-        $noticia->conteudo = $request->titulo;
-        $noticia->categoria_id = $request->titulo;
-        $noticia->ativo = $request->titulo;
+        $noticia->conteudo = $request->conteudo;
+        $noticia->categoria_id = $request->categoria_id;
+        $noticia->ativo = $request->ativo;
         $noticia->usuario_id = Auth::user()->id;
 
         if ($request->hasFile('imagem')) {
+
             if ($noticia->imagem) {
                 Storage::disk('public')->delete($noticia->imagem);
             }
@@ -100,7 +100,7 @@ class NoticiaApiController extends Controller
         return response()->json([
             'mensagem' => 'Notícia atualizada com sucesso.',
             'data' => $noticia
-        ], 201);
+        ]);
     }
 
     /**
@@ -110,10 +110,9 @@ class NoticiaApiController extends Controller
     {
         $noticia = Noticia::findOrFail($id);
         $noticia->delete();
-
         return response()->json([
-            'mensagem' => 'Notícia removida com sucesso.',
-            'data' => $noticia
+            'mensagem' => 'Notícia removida com sucesso.'
+
         ]);
     }
 }

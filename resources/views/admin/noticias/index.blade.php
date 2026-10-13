@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex justify-between items-center">
                     <h1 class="text-[18px]">Lista de Noticias</h1>
                     <a href="{{ route('admin.noticias.cadastrar') }}" class="bg-slate-950 text-white px-4 py-2 rounded ">+
-                        Adicionar Notícia</a>
+                        Adicionar Noticia.</a>
                 </div>
 
                 <div class="p-6 overflow-x-auto">
@@ -33,24 +33,24 @@
                                     <td>{{ $n->id }}</td>
                                     <td>{{ $n->titulo }}</td>
                                     <td class="hidden sm:table-cell">{{ $n->resumo }}</td>
-                                    <td class="hidden sm:table-cell">{{ $n->categoria_id }}</td>
+                                    <td class="hidden sm:table-cell">{{ $n->categoria }}</td>
                                     <td>
                                         {{ $n->created_at->format('d/m/Y H:i') }}
                                         <br>0
                                         {{ $n->created_at->diffForHumans() }}
 
                                     </td>
-                                    <td class="text-center ">
+                                    <td class="text-center flex gap-1">
                                         <a href="{{ route('admin.noticias.editar', $n->id) }}"
                                             class="btn-editar">Editar</a>
 
                                         <form action="{{ route('admin.noticias.excluir', $n->id) }}" method="post">
-
                                             @method('delete')
                                             @csrf
 
                                             <button type="submit" class="btn-excluir"
-                                                onclick="return confirm('Deseja Excluir Permanentemente o Registro?')">Excluir</button>
+                                                onclick="return confirm('Deseja Excluir o registro?')">Excluir </button>
+
                                         </form>
                                     </td>
                                 </tr>
