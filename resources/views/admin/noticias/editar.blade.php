@@ -15,7 +15,7 @@
                 </div>
                 <div class="p-6 overflow-x-auto">
 
-                    <form action="{{ route('admin.categorias.atualizar', $noticia->id) }}" method="post"
+                    <form action="{{ route('admin.noticias.atualizar', $noticia->id) }}" method="post"
                         enctype="multipart/form-data">
                         @method('put')
                         @csrf

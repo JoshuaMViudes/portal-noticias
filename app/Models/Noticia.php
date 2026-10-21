@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Noticia extends Model
 {
-    public function categoria(){
+    public function categoria()
+    {
         return $this->belongsTo(Categoria::class);
     }
 
-    public function autor(){
+    public function autor()
+    {
         return $this->belongsTo(user::class, 'usuario_id');
     }
 }
